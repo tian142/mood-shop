@@ -44,11 +44,11 @@ data.forEach(function (item) {
     newDiv.appendChild(img);
 
     let imageDesc = document.createElement('p');
-    imageDesc.innerText = item.name;
+    imageDesc.innerHTML = `<div class=::>${item.name}`;
     newDiv.appendChild(imageDesc);
 
     let price = document.createElement('p');
-    price.innerText = item.price;
+    price.innerText = '$ ' + item.price;
     newDiv.appendChild(price);
 
     let button = document.createElement('button');
@@ -127,7 +127,7 @@ const showItems = () => {
         console.log(item);
         itemStr += `<li>
         <span class="imageDiv"><img src="${image}" class="image"></span>
-        <p class="cartText"> ${name} 
+        <p class="cartText"> <b>${name}</b> 
         $${price} x ${qty} = 
         $${(price * qty).toFixed(
             2
