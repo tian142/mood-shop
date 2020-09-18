@@ -13,25 +13,32 @@ itemList.addEventListener('click', (e) => {
         const name = e.target.dataset.name; //named in the html creation in showItem
         // console.log(name);
         removeItem(name);
-        // if (cart.length === 0) {
-        //     itemList.removeAttribute();
-        // }
+        checkIfEmpty();
         // console.log(cart);
     } else if (e.target && e.target.classList.contains('addOne')) {
         const name = e.target.dataset.name;
         addItem(name);
+        showItems();
     } else if (e.target && e.target.classList.contains('minusOne')) {
         const name = e.target.dataset.name;
         removeItem(name, 1);
+        checkIfEmpty();
     }
-    showItems();
+});
+
+itemList.addEventListener('change', (e) => {
+    if (e.target && e.target.classList.contains('updateQty')) {
+        const name = e.target.dataset.name;
+        const qty = parseInt(e.target.value);
+        updateCart(name, qty);
+    }
 });
 
 data.forEach(function (item) {
     let newDiv = document.createElement('div');
     newDiv.className = 'item';
     let img = document.createElement('img');
-    // img.src = item.image;
+    img.src = item.image;
     img.width = 300;
     img.height = 300;
     newDiv.appendChild(img);
@@ -53,6 +60,26 @@ data.forEach(function (item) {
     itemsContainer.appendChild(newDiv);
 });
 
+const updateCart = (name, qty) => {
+    for (let item of cart) {
+        if (item.name === name) {
+            if (qty < 1) {
+                checkIfEmpty();
+                showItems();
+                return;
+            }
+            item.qty = qty;
+            showItems();
+            return;
+        }
+    }
+};
+
+const checkIfEmpty = () => {
+    if (cart.length === 0) {
+        itemList.innerHTML = '';
+    }
+};
 const addItem = (name, price) => {
     for (let item in cart) {
         if (cart[item].name === name) {
@@ -86,13 +113,14 @@ const showItems = () => {
     for (let item of cart) {
         // console.log(`-${item.name} $${item.price} x ${item.qty}`);
         const { name, price, qty } = item;
-        itemStr += `<li> ${name} 
+        itemStr += `<li><p class="cartText"> ${name} 
         $${price} x ${qty} = 
         $${(price * qty).toFixed(
             2
-        )} <button class="removeBtn" data-name="${name}">Remove<button>
+        )}</p><button class="removeBtn" data-name="${name}">Remove</button>
         <button class="addOne" data-name="${name}">+</button>
         <button class="minusOne" data-name="${name}">-</button>
+        <input class="updateQty" type="number" min="0" data-name="${name}"> 
         </li>
         
         `;
