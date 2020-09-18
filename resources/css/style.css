@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(255, 204, 203);
+    background-color: rgb(227, 255, 226);
     box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
     padding: 0px 40px 0px;
 }
@@ -54,7 +54,7 @@ h4 {
     margin-bottom: 20px;
     border: 2px solid black;
     border-radius: 5px;
-    background-color: rgb(255, 204, 203);
+    background-color: rgb(227, 255, 226);
     padding: 2px 10px;
     cursor: pointer;
 }
@@ -73,13 +73,14 @@ h4 {
     margin-bottom: -10px;
     width: 1200px;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 24px;
 }
 #cart-total {
     margin-top: 10px;
+    margin-left: 50%;
     width: 1200px;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 24px;
 }
 .footer ul {
     list-style-type: none;
@@ -92,28 +93,42 @@ h4 {
 .footer ul li {
     display: flex;
     width: 100%;
-    padding: 25px 0px;
+    padding: 10px 0px;
     border-bottom: 1px solid lightgray;
+}
+
+.image {
+    height: 100px;
+    /* margin: 0 20% 0 0; */
 }
 
 li > button {
     margin-left: 20px;
+    margin-top: 30px;
     border: 1px solid black;
     border-radius: 5px;
     background-color: white;
     padding: 2px 15px;
     cursor: pointer;
+    height: 40px;
 }
 
 li > input {
     margin-left: 20px;
+    margin-top: 30px;
     border: 1px solid black;
     border-radius: 5px;
     background-color: white;
+    height: 36px;
+    padding-left: 10px;
+}
+.imageDiv {
+    width: 50%;
 }
 .cartText {
-    font-size: 40;
-    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 35px;
     padding: 0;
     width: 90%;
 }
