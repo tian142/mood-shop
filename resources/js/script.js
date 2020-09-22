@@ -4,6 +4,7 @@ const itemsContainer = document.getElementById('items');
 const itemList = document.getElementById('item-list');
 const cartQty = document.getElementById('cart-qty');
 const cartTotal = document.getElementById('cart-total');
+const checkOut = document.querySelector('#checkout');
 const cart = [];
 
 itemList.addEventListener('click', (e) => {
@@ -53,6 +54,7 @@ data.forEach(function (item) {
 
     let button = document.createElement('button');
     button.id = item.name;
+    button.classList.add('itemBtn');
     button.dataset.id = item.id;
     button.dataset.price = item.price;
     button.innerHTML = 'Add to Cart';
@@ -90,14 +92,12 @@ const addItem = (name, price) => {
             return;
         }
     }
-
     let image = '';
     data.forEach(function (item) {
         if (item.name === name) {
             image = item.image;
         }
     });
-
     const item = { name, price, qty: 1, image };
     cart.push(item);
 };
@@ -166,3 +166,8 @@ const getTotalPrice = () => {
 };
 
 showItems();
+
+checkOut.addEventListener('mouseenter', () => {
+    console.log('hovered');
+    checkOut.classList.add('hover');
+});
